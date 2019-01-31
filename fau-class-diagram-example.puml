@@ -1,0 +1,89 @@
+@startuml
+
+ShoppingCart "0..*"--*"1" Customer: has
+Order "0..*"--*"1" Customer: has
+Order "1"*--"1" ShippingInfo: has a
+Order "1"*--"1" OrderDetails: has a
+Customer --|> User: is a
+Administrator --|> User: is a
+
+class ShoppingCart{
+    -String cartId
+    -String productId
+    -Int quantity
+    -Date dateAdded
+    +addCartItem()
+    +updateQuantity()
+    +viewCartDetails()
+    +checkOut()
+}
+
+class Customer {
+    -String customerName
+    -String customerAddress
+    -String email
+    -String creditCardInfo
+    -String shippingInfo
+    -Float accountBalance
+    +register()
+    +login()
+    +updateProfile()
+
+}
+
+class User {
+    -String userId
+    -String password 
+    -String loginStatus
+    -Date registerDate
+    +Bool verifyLogin()
+}
+
+class Order {
+    -Int orderId 
+    -Date dateCreated
+    -Date dateShipped
+    -String customerName
+    -String customerId
+    -String status
+    -String shippingId
+    +placeOrder()
+}
+
+class ShippingInfo {
+    -Int shippingId
+    -String shippingType
+    -Int shippingCost
+    -Int shippingRegionId
+    +updateShippingInfo()
+}
+
+class OrderDetails {
+    -Int orderId 
+    -Int productId
+    -String productName 
+    -Int quantity
+    -Float unitCost 
+    -Float subTotal
+    +Float calculatePrice()
+}
+
+class Administrator {
+    -String adminName 
+    -String email
+    +Bool updateCatalog()
+}
+
+legend right
+|=Annotation |= Description |
+|--*| Composition |
+|--\|>| Extention |
+|--o| Aggregation |
+|-| Private |
+|+| Public |
+|~| Package private |
+|#| Package private |
+endlegend
+
+
+@enduml

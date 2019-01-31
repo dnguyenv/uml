@@ -1,0 +1,26 @@
+@startuml
+    
+    participant "Customer" as cus
+    participant "ShoppingCart" as sc
+    participant "Order" as or
+    participant "ShippingInfo" as si
+    participant "OrderDetails" as od
+    
+    activate cus   
+    
+    
+    cus->cus: login()
+    activate sc
+    cus->sc: addCartItem()
+    cus->sc: updateQuantity()
+    activate od
+    sc->od: calculatePrice()    
+    od->sc: calculatePrice()    
+    cus->sc: viewCartDetails()
+    cus->sc: checkOut()
+    activate si
+    cus->si: updateShippingInfo()
+    activate or  
+    cus->or: placeOrder() 
+    
+    @enduml

@@ -7,8 +7,7 @@
     participant "OrderDetails" as od
     
     activate cus   
-    
-    
+   
     cus->cus: login()
     activate sc
     cus->sc: addCartItem()

@@ -1,0 +1,32 @@
+@startuml
+
+[*] --> Authentication
+
+state Authentication {
+  [*] --> CustomerAuthentication
+  CustomerAuthentication: The customer is being authenticated
+  CustomerAuthentication --> CustomerAuthenticated: Successuflly authentidated
+  CustomerAuthenticated: The customer is successfully authenticated
+  CustomerAuthentication --> [*] : Authentication failed
+}
+
+Authentication --> Shopping
+
+state Shopping {
+  [*] --> ShoppingCart: Add/remove item(s) to/from shopping cart
+  ShoppingCart: Shopping cart is being maintained
+  ShoppingCart: Add or remove Items
+  ShoppingCart --> ShoppingCartPreview : Confirm the quantity
+  ShoppingCartPreview: Summary of the cart
+}
+
+Shopping --> ConfirmedOrder: Place order
+ConfirmedOrder: Order is confirmed 
+
+ConfirmedOrder --> ShippingConfirmed : Update shipping information
+ShippingConfirmed: All information necessary
+ShippingConfirmed: for shippng is confirmed
+
+ShippingConfirmed --> [*] : Ship items
+
+@enduml
